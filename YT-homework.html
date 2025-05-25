@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>yt首頁切版</title>
+
+  <link rel="stylesheet" href="./css/all.css">
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./CSS/style.css">
+
+ <!-- googlefont -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+
+ <style>
+  *,
+  *::before,
+  *::after{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+  body{
+    background-color: #0c0c0c;
+    font-family: 'Roboto', sans-serif;
+  }
+  #header{
+    width: 100%;
+    height: 65px;
+    background-color: #0c0c0c;
+    border: 1px solid #333;
+    position: fixed;
+    z-index: 1;
+    }
+  #side-bar{
+    width: 240px;
+    height: 100%;
+    background-color: #0c0c0c;
+    border: 1px solid #333;
+    position: fixed;
+    padding: 15px 15px 100px 15px;
+    margin-top: 65px;
+    overflow-y: auto;
+    scrollbar-color:#333 #0c0c0c ;
+    scrollbar-width: thin;
+    }
+
+  #side-bar-item div:hover {
+    width:100% ;
+    height:40px ;
+    border-radius: 10px;
+    background-color: #333;
+    cursor: pointer;
+  }
+
+#card-container{
+  max-width: 100%;
+  margin-left: 300px; /* 避開側邊欄 */
+  margin-right: 50px;
+  height: 1000px;
+  padding: 85px 10px 20px; 
+  /* background-color: #ffffff; */
+
+ 
+}
+
+
+  .float-card {
+    width: 323px;
+    height: 303px;
+    background-color: #1f1f1f;
+    border-radius: 10px;
+    padding: 12px;
+    margin: 10px;
+    overflow: hidden;
+
+    box-sizing: border-box;
+    float: left;
+    cursor: pointer;
+   
+}
+
+.float-card-img{
+    width: 300px;
+    height: 150px;
+    background-color: #6f6f6f;
+    border-radius: 15px;
+
+
+}
+.float-card-point{
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    margin-top: 10px;
+    margin-left: 10px;
+    border-radius: 50%;
+    background-color: #434343;
+     vertical-align: middle;
+}
+.float-card-text{
+    font-size: 1rem;
+    color: #909090;
+    display: -webkit-box; /* 使用 WebKit 盒模型 */
+    -webkit-line-clamp: 2; 
+    -webkit-box-orient: vertical; /* 垂直排列文字 */
+    overflow: hidden; /* 隱藏超出內容 */
+    text-overflow: ellipsis; /* 超出部分顯示省略號 */
+    max-width: 100%; /* 防止溢出父容器 */
+    line-height: 1.5; 
+    margin:10px 0px 0px 10px;
+    }
+.box-p{
+  display: inline-block;
+  width: 100%;
+  min-height: 130px;
+  margin-top: 8px;
+  
+}
+.float-card-title{
+   display: inline-block;
+   font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 20px;
+    font-weight: bold;
+    color: #ffffff;
+    margin-top: 15px;
+    margin-left: 5px;
+    vertical-align: middle;
+}
+.logo-img{
+  width: 180px;
+  height: auto;
+  display: inline-block;
+  padding: 8px;
+  vertical-align: middle;
+  margin-top: 8px;
+  cursor: pointer;
+}
+.line-container{
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  padding: 8px;
+  vertical-align: middle;
+  margin-left:10px;
+  margin-top: 8px;
+  cursor: pointer;
+}
+.line{
+  width: 100%;
+  height: 2px;
+  background-color: #fff;
+  border-radius: 3px;
+  margin-bottom: 5px;
+  margin-top: 6px;
+}
+.search-bar{
+  display: inline-block;
+  width: 600px;
+  height: 35px;
+   border-radius:40px;
+   border: 1px solid #333;
+   margin: 0px 0px 0px 70px;
+
+  
+}
+.search-bar-right{
+  display: inline-block;
+  width: 60px;
+  height: 35px;
+  float: right;
+  border-radius: 0px 40px 40px 0px;
+  background-color:#222222;
+}
+.search-icon{
+  display: inline-block;
+  /* margin-top: 2px;
+  margin-left: 15px; */
+  display: inline-block;
+  width: 100%;
+  height:100%;
+  padding: 7px;
+  color: #fff;
+  cursor: pointer;
+
+}
+  /*SVG 規範，如果 <path> 沒有 fill，瀏覽器可能默認 fill: black 或不填充*/
+ /* fill: currentColor; 控制 SVG 圖標填充顏色 ，代表元素的當前文字顏色（color 屬性的值），非常適合用於動態調整 匹配父元素的文字顏色。*/
+ /* 網格對齊 其實野蠻好用的 display: grid; grid-template-columns: 40px 1fr; */
+.radio-icon{
+  fill: currentColor;
+  color: #fff;
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+  
+}
+.radio-buttom{
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: #333;
+  display: inline-block;
+  margin:2px 0px 0px 5px;
+  vertical-align: middle;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.radio-buttom:hover{
+  background-color: #3f3f3f;
+  
+}
+
+#search-input{
+
+  background-color: #0c0c0c;
+  color: #6f6f6f; 
+  border: none; 
+  background:transparent; 
+  outline: none;
+  width: 538px; 
+  height: 33px;    
+  padding-left: 8px;
+  border-radius: 40px 0px 0px 40px;
+
+}
+
+#search-input:focus{
+  width: 538px; 
+  height: 33px; 
+  border: 1px solid  #1a73e8; 
+  border-radius: 40px 0px 0px 40px;
+}
+
+.side-bar-footer a{
+  text-decoration: none;
+  color: #cacaca;
+  display: inline-block;
+  line-height: 1rem;
+  font-size: 12px;
+}
+ </style>
+</head>
+
+<body>
+  <div id="container1">
+
+    <div id="header">
+
+      <div class="line-container">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+      </div>
+
+      <div class="logo-img">
+      <img src="./IMG/youtube_full_color_light_logo/yt_logo_rgb_light.svg" alt="Youtube" width="150px" height="auto">
+      </div>
+
+      <div class="search-bar">
+        <!-- value:搜尋 -->
+        <label for="search-input" ></label> 
+        <input id="search-input" type="text" maxlength="10" placeholder="搜尋"   >
+
+        <div class="search-bar-right">
+          <div class="search-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" height="24" viewBox="0 0 24 24" width="24" focusable="false" aria-hidden="true" style="pointer-events: none; display: inherit; width: 100%; height: 100%;">
+              <path clip-rule="evenodd" d="M16.296 16.996a8 8 0 11.707-.708l3.909 3.91-.707.707-3.909-3.909zM18 11a7 7 0 00-14 0 7 7 0 1014 0z" fill-rule="evenodd"></path></svg>
+          </div>
+        </div>
+      </div>
+
+        <div class="radio-buttom">
+          <div class="radio-icon"> 
+            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" focusable="false" aria-hidden="true" style="pointer-events: none; display: inherit; width: 100%; height: 100%;">
+              <path d="M12 3c-1.66 0-3 1.37-3 3.07v5.86c0 1.7 1.34 3.07 3 3.07s3-1.37 3-3.07V6.07C15 4.37 13.66 3 12 3zm6.5 9h-1c0 3.03-2.47 5.5-5.5 5.5S6.5 15.03 6.5 12h-1c0 3.24 2.39 5.93 5.5 6.41V21h2v-2.59c3.11-.48 5.5-3.17 5.5-6.41z"></path></svg>
+          </div>
+        </div>
+
+        <div class="radio-buttom" style="margin-left: 260px;">
+          <div class="radio-icon"> 
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" height="24" viewBox="0 0 24 24" width="24" focusable="false" aria-hidden="true" style="pointer-events: none; display: inherit; width: 100%; height: 100%;">
+              <path clip-rule="evenodd" d="m13.497 4.898.053.8.694.4C15.596 6.878 16.5 8.334 16.5 10v2.892c0 .997.27 1.975.784 2.83L18.35 17.5H5.649l1.067-1.778c.513-.855.784-1.833.784-2.83V10c0-1.666.904-3.122 2.256-3.902l.694-.4.053-.8c.052-.78.703-1.398 1.497-1.398.794 0 1.445.618 1.497 1.398ZM6 10c0-2.224 1.21-4.165 3.007-5.201C9.11 3.236 10.41 2 12 2c1.59 0 2.89 1.236 2.993 2.799C16.79 5.835 18 7.776 18 10v2.892c0 .725.197 1.436.57 2.058l1.521 2.535c.4.667-.08 1.515-.857 1.515H15c0 .796-.316 1.559-.879 2.121-.562.563-1.325.879-2.121.879s-1.559-.316-2.121-.879C9.316 20.56 9 19.796 9 19H4.766c-.777 0-1.257-.848-.857-1.515L5.43 14.95c.373-.622.57-1.333.57-2.058V10Zm4.5 9c0 .398.158.78.44 1.06.28.282.662.44 1.06.44s.78-.158 1.06-.44c.282-.28.44-.662.44-1.06h-3Z" fill-rule="evenodd">
+              </path>
+            </svg>
+          </div>
+        </div>
+
+        <div class="float-card-point" style="margin: 2px 0px 0px 5px; cursor: pointer;">
+          <img src="https://picsum.photos/35/35/?random=1" style="border-radius: 50%;">
+        </div>
+
+    </div>
+  </div>
+
+  
+
+  <div id="container2">
+    <div id="side-bar">
+
+      <!-- style="pointer-events: none; display: inherit;"：內聯樣式禁用滑鼠事件
+       aria-hidden="true"：隱藏 SVG 於螢幕閱讀器，因為它是裝飾性圖標（無語義內容）。
+       height="24" width="24"：固定尺寸為 24x24 像素，適合導航圖標。
+       viewBox="0 0 24 24"：定義 SVG 的坐標系，確保圖標縮放正確。 
+       clip-rule="evenodd" fill-rule="evenodd"：定義填充規則，確保房子形狀（房屋圖標）正確渲染。-->
+      
+      <span id="side-bar-item">
+        <div style="width: 100%; height: 40px; padding: 8px ; ">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" height="24" viewBox="0 0 24 24" width="24" focusable="false" aria-hidden="true" style="pointer-events: none; display: inline-block; vertical-align: middle; ">
+          <path clip-rule="evenodd" d="M22.146 11.146a.5.5 0 01-.353.854H20v7.5a1.5 1.5 0 01-1.5 1.5H14v-8h-4v8H5.5A1.5 1.5 0 014 19.5V12H2.207a.5.5 0 01-.353-.854L12 1l10.146 10.146Z" fill-rule="evenodd" color="#fff">
+          </path>
+        </svg>
+          <p style="color: #fff; display: inline-block; padding-left: 10px; padding-top: 7px; vertical-align: middle;">首頁</p>
+        </div>
+      </span>
+
+      <span id="side-bar-item">
+        <div style="width: 100%; height: 40px; padding: 8px">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" height="24" viewBox="0 0 24 24" width="24" focusable="false" aria-hidden="true" style="pointer-events: none; display: inline-block; vertical-align: middle; ">
+            <path clip-rule="evenodd" d="m7.61 15.719.392-.22v-2.24l-.534-.228-.942-.404c-.869-.372-1.4-1.15-1.446-1.974-.047-.823.39-1.642 1.203-2.097h.001L15.13 3.59c1.231-.689 2.785-.27 3.466.833.652 1.058.313 2.452-.879 3.118l-1.327.743-.388.217v2.243l.53.227.942.404c.869.372 1.4 1.15 1.446 1.974.047.823-.39 1.642-1.203 2.097l-.002.001-8.845 4.964-.001.001c-1.231.688-2.784.269-3.465-.834-.652-1.058-.313-2.451.879-3.118l1.327-.742Zm1.993 6.002c-1.905 1.066-4.356.46-5.475-1.355-1.057-1.713-.548-3.89 1.117-5.025a4.14 4.14 0 01.305-.189l1.327-.742-.942-.404a4.055 4.055 0 01-.709-.391c-.963-.666-1.578-1.718-1.644-2.877-.08-1.422.679-2.77 1.968-3.49l8.847-4.966c1.905-1.066 4.356-.46 5.475 1.355 1.057 1.713.548 3.89-1.117 5.025a4.074 4.074 0 01-.305.19l-1.327.742.942.403c.253.109.49.24.709.392.963.666 1.578 1.717 1.644 2.876.08 1.423-.679 2.77-1.968 3.491l-8.847 4.965ZM10 14.567a.25.25 0 00.374.217l4.45-2.567a.25.25 0 000-.433l-4.45-2.567a.25.25 0 00-.374.216v5.134Z" fill-rule="evenodd" color="#fff">
+            </path></svg>
+            <p style="color: #fff; display: inline-block; padding-left: 10px; padding-top: 7px; vertical-align: middle;">Shorts</p>
+        </div>
+      </span>
+    
+      <span id="side-bar-item">
+        <div style="width: 100%; height: 40px; padding: 8px">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" height="24" viewBox="0 0 24 24" width="24" focusable="false" aria-hidden="true" style="pointer-events: none; display: inline-block; vertical-align: middle; ">
+          <path clip-rule="evenodd" d="M4 4.5A1.5 1.5 0 015.5 3h13A1.5 1.5 0 0120 4.5H4Zm16.5 3h-17v11h17v-11ZM3.5 6A1.5 1.5 0 002 7.5v11A1.5 1.5 0 003.5 20h17a1.5 1.5 0 001.5-1.5v-11A1.5 1.5 0 0020.5 6h-17Zm7.257 4.454a.5.5 0 00-.757.43v4.233a.5.5 0 00.757.429L15 13l-4.243-2.546Z" fill-rule="evenodd" color="#fff">
+          </path></svg>
+          <p style="color: #fff; display: inline-block; padding-left: 10px; padding-top: 7px; vertical-align: middle;">訂閱內容</p>
+        </div>
+      </span>
+
+      <span id="side-bar-item">
+        <div style="width: 100%; height: 40px; padding: 8px">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" height="24" viewBox="0 0 24 24" width="24" focusable="false" aria-hidden="true" style="pointer-events: none; display: inline-block; vertical-align: middle; ">
+          <path clip-rule="evenodd" d="M12 20.5c4.694 0 8.5-3.806 8.5-8.5S16.694 3.5 12 3.5 3.5 7.306 3.5 12s3.806 8.5 8.5 8.5Zm0 1.5c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10Zm0-5c2.761 0 5-2.239 5-5s-2.239-5-5-5-5 2.239-5 5 2.239 5 5 5Zm0 1c3.314 0 6-2.686 6-6s-2.686-6-6-6-6 2.686-6 6 2.686 6 6 6Zm-1.243-8.546c-.333-.2-.757.04-.757.43v4.233c0 .389.424.629.757.429L15 12l-4.243-2.546Z" fill-rule="evenodd" color="#fff">
+          </path></svg>
+          <p style="color: #fff; display: inline-block; padding-left: 10px; padding-top: 7px; vertical-align: middle;">Youtube Music</p>
+        </div>
+      </span>
+
+      <div style="border: 1px solid #333; margin: 10px;"></div>
+
+      <span id="side-bar-item">
+        <div style="width: 100%; height: 40px; padding: 8px ; ">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" height="24" viewBox="0 0 24 24" width="24" focusable="false" aria-hidden="true" style="pointer-events: none; display: inline-block; vertical-align: middle; ">
+          <path clip-rule="evenodd" d="M22.146 11.146a.5.5 0 01-.353.854H20v7.5a1.5 1.5 0 01-1.5 1.5H14v-8h-4v8H5.5A1.5 1.5 0 014 19.5V12H2.207a.5.5 0 01-.353-.854L12 1l10.146 10.146Z" fill-rule="evenodd" color="#fff">
+          </path>
+        </svg>
+          <p style="color: #fff; display: inline-block; padding-left: 10px; padding-top: 7px; vertical-align: middle;">首頁</p>
+        </div>
+      </span>
+
+      <span id="side-bar-item">
+        <div style="width: 100%; height: 40px; padding: 8px">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" height="24" viewBox="0 0 24 24" width="24" focusable="false" aria-hidden="true" style="pointer-events: none; display: inline-block; vertical-align: middle; ">
+            <path clip-rule="evenodd" d="m7.61 15.719.392-.22v-2.24l-.534-.228-.942-.404c-.869-.372-1.4-1.15-1.446-1.974-.047-.823.39-1.642 1.203-2.097h.001L15.13 3.59c1.231-.689 2.785-.27 3.466.833.652 1.058.313 2.452-.879 3.118l-1.327.743-.388.217v2.243l.53.227.942.404c.869.372 1.4 1.15 1.446 1.974.047.823-.39 1.642-1.203 2.097l-.002.001-8.845 4.964-.001.001c-1.231.688-2.784.269-3.465-.834-.652-1.058-.313-2.451.879-3.118l1.327-.742Zm1.993 6.002c-1.905 1.066-4.356.46-5.475-1.355-1.057-1.713-.548-3.89 1.117-5.025a4.14 4.14 0 01.305-.189l1.327-.742-.942-.404a4.055 4.055 0 01-.709-.391c-.963-.666-1.578-1.718-1.644-2.877-.08-1.422.679-2.77 1.968-3.49l8.847-4.966c1.905-1.066 4.356-.46 5.475 1.355 1.057 1.713.548 3.89-1.117 5.025a4.074 4.074 0 01-.305.19l-1.327.742.942.403c.253.109.49.24.709.392.963.666 1.578 1.717 1.644 2.876.08 1.423-.679 2.77-1.968 3.491l-8.847 4.965ZM10 14.567a.25.25 0 00.374.217l4.45-2.567a.25.25 0 000-.433l-4.45-2.567a.25.25 0 00-.374.216v5.134Z" fill-rule="evenodd" color="#fff">
+            </path></svg>
+            <p style="color: #fff; display: inline-block; padding-left: 10px; padding-top: 7px; vertical-align: middle;">Shorts</p>
+        </div>
+      </span>
+    
+      <span id="side-bar-item">
+        <div style="width: 100%; height: 40px; padding: 8px">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" height="24" viewBox="0 0 24 24" width="24" focusable="false" aria-hidden="true" style="pointer-events: none; display: inline-block; vertical-align: middle; ">
+          <path clip-rule="evenodd" d="M4 4.5A1.5 1.5 0 015.5 3h13A1.5 1.5 0 0120 4.5H4Zm16.5 3h-17v11h17v-11ZM3.5 6A1.5 1.5 0 002 7.5v11A1.5 1.5 0 003.5 20h17a1.5 1.5 0 001.5-1.5v-11A1.5 1.5 0 0020.5 6h-17Zm7.257 4.454a.5.5 0 00-.757.43v4.233a.5.5 0 00.757.429L15 13l-4.243-2.546Z" fill-rule="evenodd" color="#fff">
+          </path></svg>
+          <p style="color: #fff; display: inline-block; padding-left: 10px; padding-top: 7px; vertical-align: middle;">訂閱內容</p>
+        </div>
+      </span>
+
+      <span id="side-bar-item">
+        <div style="width: 100%; height: 40px; padding: 8px">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" height="24" viewBox="0 0 24 24" width="24" focusable="false" aria-hidden="true" style="pointer-events: none; display: inline-block; vertical-align: middle; ">
+          <path clip-rule="evenodd" d="M12 20.5c4.694 0 8.5-3.806 8.5-8.5S16.694 3.5 12 3.5 3.5 7.306 3.5 12s3.806 8.5 8.5 8.5Zm0 1.5c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10Zm0-5c2.761 0 5-2.239 5-5s-2.239-5-5-5-5 2.239-5 5 2.239 5 5 5Zm0 1c3.314 0 6-2.686 6-6s-2.686-6-6-6-6 2.686-6 6 2.686 6 6 6Zm-1.243-8.546c-.333-.2-.757.04-.757.43v4.233c0 .389.424.629.757.429L15 12l-4.243-2.546Z" fill-rule="evenodd" color="#fff">
+          </path></svg>
+          <p style="color: #fff; display: inline-block; padding-left: 10px; padding-top: 7px; vertical-align: middle;">Youtube Music</p>
+        </div>
+      </span>
+
+      <div style="border: 1px solid #333; margin: 10px;"></div>
+
+      
+      <span id="side-bar-item">
+        <div style="width: 100%; height: 40px; padding: 8px">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" height="24" viewBox="0 0 24 24" width="24" focusable="false" aria-hidden="true" style="pointer-events: none; display: inline-block; vertical-align: middle; ">
+          <path clip-rule="evenodd" d="M12 20.5c4.694 0 8.5-3.806 8.5-8.5S16.694 3.5 12 3.5 3.5 7.306 3.5 12s3.806 8.5 8.5 8.5Zm0 1.5c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10Zm0-5c2.761 0 5-2.239 5-5s-2.239-5-5-5-5 2.239-5 5 2.239 5 5 5Zm0 1c3.314 0 6-2.686 6-6s-2.686-6-6-6-6 2.686-6 6 2.686 6 6 6Zm-1.243-8.546c-.333-.2-.757.04-.757.43v4.233c0 .389.424.629.757.429L15 12l-4.243-2.546Z" fill-rule="evenodd" color="#fff">
+          </path></svg>
+          <p style="color: #fff; display: inline-block; padding-left: 10px; padding-top: 7px; vertical-align: middle;">Youtube Music</p>
+        </div>
+      </span>
+
+      
+      <span id="side-bar-item">
+        <div style="width: 100%; height: 40px; padding: 8px">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" height="24" viewBox="0 0 24 24" width="24" focusable="false" aria-hidden="true" style="pointer-events: none; display: inline-block; vertical-align: middle; ">
+          <path clip-rule="evenodd" d="M12 20.5c4.694 0 8.5-3.806 8.5-8.5S16.694 3.5 12 3.5 3.5 7.306 3.5 12s3.806 8.5 8.5 8.5Zm0 1.5c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10Zm0-5c2.761 0 5-2.239 5-5s-2.239-5-5-5-5 2.239-5 5 2.239 5 5 5Zm0 1c3.314 0 6-2.686 6-6s-2.686-6-6-6-6 2.686-6 6 2.686 6 6 6Zm-1.243-8.546c-.333-.2-.757.04-.757.43v4.233c0 .389.424.629.757.429L15 12l-4.243-2.546Z" fill-rule="evenodd" color="#fff">
+          </path></svg>
+          <p style="color: #fff; display: inline-block; padding-left: 10px; padding-top: 7px; vertical-align: middle;">Youtube Music</p>
+        </div>
+      </span>
+
+      
+      <span id="side-bar-item">
+        <div style="width: 100%; height: 40px; padding: 8px">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" height="24" viewBox="0 0 24 24" width="24" focusable="false" aria-hidden="true" style="pointer-events: none; display: inline-block; vertical-align: middle; ">
+          <path clip-rule="evenodd" d="M12 20.5c4.694 0 8.5-3.806 8.5-8.5S16.694 3.5 12 3.5 3.5 7.306 3.5 12s3.806 8.5 8.5 8.5Zm0 1.5c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10Zm0-5c2.761 0 5-2.239 5-5s-2.239-5-5-5-5 2.239-5 5 2.239 5 5 5Zm0 1c3.314 0 6-2.686 6-6s-2.686-6-6-6-6 2.686-6 6 2.686 6 6 6Zm-1.243-8.546c-.333-.2-.757.04-.757.43v4.233c0 .389.424.629.757.429L15 12l-4.243-2.546Z" fill-rule="evenodd" color="#fff">
+          </path></svg>
+          <p style="color: #fff; display: inline-block; padding-left: 10px; padding-top: 7px; vertical-align: middle;">Youtube Music</p>
+        </div>
+      </span>
+
+      
+      <span id="side-bar-item">
+        <div style="width: 100%; height: 40px; padding: 8px">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" height="24" viewBox="0 0 24 24" width="24" focusable="false" aria-hidden="true" style="pointer-events: none; display: inline-block; vertical-align: middle; ">
+          <path clip-rule="evenodd" d="M12 20.5c4.694 0 8.5-3.806 8.5-8.5S16.694 3.5 12 3.5 3.5 7.306 3.5 12s3.806 8.5 8.5 8.5Zm0 1.5c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10Zm0-5c2.761 0 5-2.239 5-5s-2.239-5-5-5-5 2.239-5 5 2.239 5 5 5Zm0 1c3.314 0 6-2.686 6-6s-2.686-6-6-6-6 2.686-6 6 2.686 6 6 6Zm-1.243-8.546c-.333-.2-.757.04-.757.43v4.233c0 .389.424.629.757.429L15 12l-4.243-2.546Z" fill-rule="evenodd" color="#fff">
+          </path></svg>
+          <p style="color: #fff; display: inline-block; padding-left: 10px; padding-top: 7px; vertical-align: middle;">Youtube Music</p>
+        </div>
+      </span>
+
+         
+      <span id="side-bar-item">
+        <div style="width: 100%; height: 40px; padding: 8px">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" height="24" viewBox="0 0 24 24" width="24" focusable="false" aria-hidden="true" style="pointer-events: none; display: inline-block; vertical-align: middle; ">
+          <path clip-rule="evenodd" d="M12 20.5c4.694 0 8.5-3.806 8.5-8.5S16.694 3.5 12 3.5 3.5 7.306 3.5 12s3.806 8.5 8.5 8.5Zm0 1.5c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10Zm0-5c2.761 0 5-2.239 5-5s-2.239-5-5-5-5 2.239-5 5 2.239 5 5 5Zm0 1c3.314 0 6-2.686 6-6s-2.686-6-6-6-6 2.686-6 6 2.686 6 6 6Zm-1.243-8.546c-.333-.2-.757.04-.757.43v4.233c0 .389.424.629.757.429L15 12l-4.243-2.546Z" fill-rule="evenodd" color="#fff">
+          </path></svg>
+          <p style="color: #fff; display: inline-block; padding-left: 10px; padding-top: 7px; vertical-align: middle;">Youtube Music</p>
+        </div>
+      </span>
+
+         
+      <span id="side-bar-item">
+        <div style="width: 100%; height: 40px; padding: 8px">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" height="24" viewBox="0 0 24 24" width="24" focusable="false" aria-hidden="true" style="pointer-events: none; display: inline-block; vertical-align: middle; ">
+          <path clip-rule="evenodd" d="M12 20.5c4.694 0 8.5-3.806 8.5-8.5S16.694 3.5 12 3.5 3.5 7.306 3.5 12s3.806 8.5 8.5 8.5Zm0 1.5c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10Zm0-5c2.761 0 5-2.239 5-5s-2.239-5-5-5-5 2.239-5 5 2.239 5 5 5Zm0 1c3.314 0 6-2.686 6-6s-2.686-6-6-6-6 2.686-6 6 2.686 6 6 6Zm-1.243-8.546c-.333-.2-.757.04-.757.43v4.233c0 .389.424.629.757.429L15 12l-4.243-2.546Z" fill-rule="evenodd" color="#fff">
+          </path></svg>
+          <p style="color: #fff; display: inline-block; padding-left: 10px; padding-top: 7px; vertical-align: middle;">Youtube Music</p>
+        </div>
+      </span>
+
+      <div style="border: 1px solid #333; margin: 10px;"></div>
+
+       <span id="side-bar-item">
+        <div style="width: 100%; height: 40px; padding: 8px ; ">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" height="24" viewBox="0 0 24 24" width="24" focusable="false" aria-hidden="true" style="pointer-events: none; display: inline-block; vertical-align: middle; ">
+          <path clip-rule="evenodd" d="M22.146 11.146a.5.5 0 01-.353.854H20v7.5a1.5 1.5 0 01-1.5 1.5H14v-8h-4v8H5.5A1.5 1.5 0 014 19.5V12H2.207a.5.5 0 01-.353-.854L12 1l10.146 10.146Z" fill-rule="evenodd" color="#fff">
+          </path>
+        </svg>
+          <p style="color: #fff; display: inline-block; padding-left: 10px; padding-top: 7px; vertical-align: middle;">首頁</p>
+        </div>
+      </span>
+
+      <span id="side-bar-item">
+        <div style="width: 100%; height: 40px; padding: 8px">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" height="24" viewBox="0 0 24 24" width="24" focusable="false" aria-hidden="true" style="pointer-events: none; display: inline-block; vertical-align: middle; ">
+            <path clip-rule="evenodd" d="m7.61 15.719.392-.22v-2.24l-.534-.228-.942-.404c-.869-.372-1.4-1.15-1.446-1.974-.047-.823.39-1.642 1.203-2.097h.001L15.13 3.59c1.231-.689 2.785-.27 3.466.833.652 1.058.313 2.452-.879 3.118l-1.327.743-.388.217v2.243l.53.227.942.404c.869.372 1.4 1.15 1.446 1.974.047.823-.39 1.642-1.203 2.097l-.002.001-8.845 4.964-.001.001c-1.231.688-2.784.269-3.465-.834-.652-1.058-.313-2.451.879-3.118l1.327-.742Zm1.993 6.002c-1.905 1.066-4.356.46-5.475-1.355-1.057-1.713-.548-3.89 1.117-5.025a4.14 4.14 0 01.305-.189l1.327-.742-.942-.404a4.055 4.055 0 01-.709-.391c-.963-.666-1.578-1.718-1.644-2.877-.08-1.422.679-2.77 1.968-3.49l8.847-4.966c1.905-1.066 4.356-.46 5.475 1.355 1.057 1.713.548 3.89-1.117 5.025a4.074 4.074 0 01-.305.19l-1.327.742.942.403c.253.109.49.24.709.392.963.666 1.578 1.717 1.644 2.876.08 1.423-.679 2.77-1.968 3.491l-8.847 4.965ZM10 14.567a.25.25 0 00.374.217l4.45-2.567a.25.25 0 000-.433l-4.45-2.567a.25.25 0 00-.374.216v5.134Z" fill-rule="evenodd" color="#fff">
+            </path></svg>
+            <p style="color: #fff; display: inline-block; padding-left: 10px; padding-top: 7px; vertical-align: middle;">Shorts</p>
+        </div>
+      </span>
+    
+      <span id="side-bar-item">
+        <div style="width: 100%; height: 40px; padding: 8px">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" height="24" viewBox="0 0 24 24" width="24" focusable="false" aria-hidden="true" style="pointer-events: none; display: inline-block; vertical-align: middle; ">
+          <path clip-rule="evenodd" d="M4 4.5A1.5 1.5 0 015.5 3h13A1.5 1.5 0 0120 4.5H4Zm16.5 3h-17v11h17v-11ZM3.5 6A1.5 1.5 0 002 7.5v11A1.5 1.5 0 003.5 20h17a1.5 1.5 0 001.5-1.5v-11A1.5 1.5 0 0020.5 6h-17Zm7.257 4.454a.5.5 0 00-.757.43v4.233a.5.5 0 00.757.429L15 13l-4.243-2.546Z" fill-rule="evenodd" color="#fff">
+          </path></svg>
+          <p style="color: #fff; display: inline-block; padding-left: 10px; padding-top: 7px; vertical-align: middle;">訂閱內容</p>
+        </div>
+      </span>
+
+      <span id="side-bar-item">
+        <div style="width: 100%; height: 40px; padding: 8px">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" height="24" viewBox="0 0 24 24" width="24" focusable="false" aria-hidden="true" style="pointer-events: none; display: inline-block; vertical-align: middle; ">
+          <path clip-rule="evenodd" d="M12 20.5c4.694 0 8.5-3.806 8.5-8.5S16.694 3.5 12 3.5 3.5 7.306 3.5 12s3.806 8.5 8.5 8.5Zm0 1.5c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10Zm0-5c2.761 0 5-2.239 5-5s-2.239-5-5-5-5 2.239-5 5 2.239 5 5 5Zm0 1c3.314 0 6-2.686 6-6s-2.686-6-6-6-6 2.686-6 6 2.686 6 6 6Zm-1.243-8.546c-.333-.2-.757.04-.757.43v4.233c0 .389.424.629.757.429L15 12l-4.243-2.546Z" fill-rule="evenodd" color="#fff">
+          </path></svg>
+          <p style="color: #fff; display: inline-block; padding-left: 10px; padding-top: 7px; vertical-align: middle;">Youtube Music</p>
+        </div>
+      </span>
+
+      <div style="border: 1px solid #333; margin: 10px;"></div>
+
+      <span id="side-bar-item">
+        <div style="width: 100%; height: 40px; padding: 8px ; ">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" height="24" viewBox="0 0 24 24" width="24" focusable="false" aria-hidden="true" style="pointer-events: none; display: inline-block; vertical-align: middle; ">
+          <path clip-rule="evenodd" d="M22.146 11.146a.5.5 0 01-.353.854H20v7.5a1.5 1.5 0 01-1.5 1.5H14v-8h-4v8H5.5A1.5 1.5 0 014 19.5V12H2.207a.5.5 0 01-.353-.854L12 1l10.146 10.146Z" fill-rule="evenodd" color="#fff">
+          </path>
+        </svg>
+          <p style="color: #fff; display: inline-block; padding-left: 10px; padding-top: 7px; vertical-align: middle;">首頁</p>
+        </div>
+      </span>
+
+      <span id="side-bar-item">
+        <div style="width: 100%; height: 40px; padding: 8px">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" height="24" viewBox="0 0 24 24" width="24" focusable="false" aria-hidden="true" style="pointer-events: none; display: inline-block; vertical-align: middle; ">
+            <path clip-rule="evenodd" d="m7.61 15.719.392-.22v-2.24l-.534-.228-.942-.404c-.869-.372-1.4-1.15-1.446-1.974-.047-.823.39-1.642 1.203-2.097h.001L15.13 3.59c1.231-.689 2.785-.27 3.466.833.652 1.058.313 2.452-.879 3.118l-1.327.743-.388.217v2.243l.53.227.942.404c.869.372 1.4 1.15 1.446 1.974.047.823-.39 1.642-1.203 2.097l-.002.001-8.845 4.964-.001.001c-1.231.688-2.784.269-3.465-.834-.652-1.058-.313-2.451.879-3.118l1.327-.742Zm1.993 6.002c-1.905 1.066-4.356.46-5.475-1.355-1.057-1.713-.548-3.89 1.117-5.025a4.14 4.14 0 01.305-.189l1.327-.742-.942-.404a4.055 4.055 0 01-.709-.391c-.963-.666-1.578-1.718-1.644-2.877-.08-1.422.679-2.77 1.968-3.49l8.847-4.966c1.905-1.066 4.356-.46 5.475 1.355 1.057 1.713.548 3.89-1.117 5.025a4.074 4.074 0 01-.305.19l-1.327.742.942.403c.253.109.49.24.709.392.963.666 1.578 1.717 1.644 2.876.08 1.423-.679 2.77-1.968 3.491l-8.847 4.965ZM10 14.567a.25.25 0 00.374.217l4.45-2.567a.25.25 0 000-.433l-4.45-2.567a.25.25 0 00-.374.216v5.134Z" fill-rule="evenodd" color="#fff">
+            </path></svg>
+            <p style="color: #fff; display: inline-block; padding-left: 10px; padding-top: 7px; vertical-align: middle;">Shorts</p>
+        </div>
+      </span>
+    
+      <span id="side-bar-item">
+        <div style="width: 100%; height: 40px; padding: 8px">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" height="24" viewBox="0 0 24 24" width="24" focusable="false" aria-hidden="true" style="pointer-events: none; display: inline-block; vertical-align: middle; ">
+          <path clip-rule="evenodd" d="M4 4.5A1.5 1.5 0 015.5 3h13A1.5 1.5 0 0120 4.5H4Zm16.5 3h-17v11h17v-11ZM3.5 6A1.5 1.5 0 002 7.5v11A1.5 1.5 0 003.5 20h17a1.5 1.5 0 001.5-1.5v-11A1.5 1.5 0 0020.5 6h-17Zm7.257 4.454a.5.5 0 00-.757.43v4.233a.5.5 0 00.757.429L15 13l-4.243-2.546Z" fill-rule="evenodd" color="#fff">
+          </path></svg>
+          <p style="color: #fff; display: inline-block; padding-left: 10px; padding-top: 7px; vertical-align: middle;">訂閱內容</p>
+        </div>
+      </span>
+
+      <span id="side-bar-item">
+        <div style="width: 100%; height: 40px; padding: 8px">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" height="24" viewBox="0 0 24 24" width="24" focusable="false" aria-hidden="true" style="pointer-events: none; display: inline-block; vertical-align: middle; ">
+          <path clip-rule="evenodd" d="M12 20.5c4.694 0 8.5-3.806 8.5-8.5S16.694 3.5 12 3.5 3.5 7.306 3.5 12s3.806 8.5 8.5 8.5Zm0 1.5c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10Zm0-5c2.761 0 5-2.239 5-5s-2.239-5-5-5-5 2.239-5 5 2.239 5 5 5Zm0 1c3.314 0 6-2.686 6-6s-2.686-6-6-6-6 2.686-6 6 2.686 6 6 6Zm-1.243-8.546c-.333-.2-.757.04-.757.43v4.233c0 .389.424.629.757.429L15 12l-4.243-2.546Z" fill-rule="evenodd" color="#fff">
+          </path></svg>
+          <p style="color: #fff; display: inline-block; padding-left: 10px; padding-top: 7px; vertical-align: middle;">Youtube Music</p>
+        </div>
+      </span>
+
+      <div style="border: 1px solid #333; margin: 10px;"></div>
+
+      <!-- side bar footer -->
+       <!-- 在 Web Components 中，<slot> 用於 Shadow DOM，作為外部內容的占位符。
+        slot="guide-links-primary" 表示一個命名插槽，外部的 HTML 元素可以通過 slot 屬性指定插入到此插槽。 -->
+       <div id="guide-links-primary" class="side-bar-footer">
+        <a href="https://www.youtube.com/about/">簡介</a>
+        <a href="https://www.youtube.com/about/press/">媒體</a>
+        <a href="https://www.youtube.com/about/copyright/">著作權</a>
+        <a href="/t/contact_us/">與我們聯絡</a>
+        <a href="https://www.youtube.com/creators/">創作者</a>
+        <a href="https://www.youtube.com/ads/">廣告</a>
+        <a href="https://developers.google.com/youtube">開發人員</a>
+      </div>
+
+    </div>
+
+
+    <div id="card-container">
+      
+      <!-- c -->
+      <div class="float-card">
+        <div>
+          <img class="float-card-img" src="https://picsum.photos/300/150/?random=1">
+        </div>
+
+        <div class="box-p">
+          <div class="float-card-point">
+          </div>
+          <div class="float-card-title">標題
+          </div>
+          <div class="float-card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, nobis.Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, nobis.</div>
+        </div>
+      </div>
+
+            <!-- c -->
+      <div class="float-card">
+        <div>
+        <img class="float-card-img" src="https://picsum.photos/300/150/?random=2">
+        </div>
+
+        <div class="box-p">
+          <div class="float-card-point">
+          </div>
+          <div class="float-card-title">標題
+          </div>
+          <div class="float-card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, nobis.Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, nobis.</div>
+        </div>
+      </div>
+
+            <!-- c -->
+      <div class="float-card">
+        <div>
+          <img class="float-card-img" src="https://picsum.photos/300/150/?random=3">
+        </div>
+
+        <div class="box-p">
+          <div class="float-card-point">
+          </div>
+          <div class="float-card-title">標題
+          </div>
+          <div class="float-card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, nobis.Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, nobis.</div>
+        </div>
+      </div>
+
+            <!-- c -->
+      <div class="float-card">
+        <div>
+          <img class="float-card-img" src="https://picsum.photos/300/150/?random=4">
+        </div>
+
+        <div class="box-p">
+          <div class="float-card-point">
+          </div>
+          <div class="float-card-title">標題
+          </div>
+          <div class="float-card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, nobis.Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, nobis.</div>
+        </div>
+      </div>
+
+            <!-- c -->
+      <div class="float-card">
+        <div>
+          <img class="float-card-img" src="https://picsum.photos/300/150/?random=5">
+        </div>
+
+        <div class="box-p">
+          <div class="float-card-point">
+          </div>
+          <div class="float-card-title">標題
+          </div>
+          <div class="float-card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, nobis.Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, nobis.</div>
+        </div>
+      </div>
+
+            <!-- c -->
+      <div class="float-card">
+        <div>
+          <img class="float-card-img" src="https://picsum.photos/300/150/?random=6">
+        </div>
+
+        <div class="box-p">
+          <div class="float-card-point">
+          </div>
+          <div class="float-card-title">標題
+          </div>
+          <div class="float-card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, nobis.Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, nobis.</div>
+        </div>
+      </div>
+
+                  <!-- c -->
+      <div class="float-card">
+        <div>
+          <img class="float-card-img" src="https://picsum.photos/300/150/?random=7">
+        </div>
+
+        <div class="box-p">
+          <div class="float-card-point">
+          </div>
+          <div class="float-card-title">標題
+          </div>
+          <div class="float-card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, nobis.Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, nobis.</div>
+        </div>
+      </div>
+                  <!-- c -->
+      <div class="float-card">
+        <div>
+          <img class="float-card-img"src="https://picsum.photos/300/150/?random=8">
+        </div>
+
+        <div class="box-p">
+          <div class="float-card-point">
+          </div>
+          <div class="float-card-title">標題
+          </div>
+          <div class="float-card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, nobis.Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, nobis.</div>
+        </div>
+      </div>
+
+                  <!-- c -->
+      <div class="float-card">
+        <div>
+          <img class="float-card-img" src="https://picsum.photos/300/150/?random=9">
+        </div>
+
+        <div class="box-p">
+          <div class="float-card-point">
+          </div>
+          <div class="float-card-title">標題
+          </div>
+          <div class="float-card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, nobis.Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, nobis.</div>
+        </div>
+      </div>
+
+                  <!-- c -->
+      <div class="float-card">
+        <div>
+          <img class="float-card-img" src="https://picsum.photos/300/150/?random=10">
+        </div>
+
+        <div class="box-p">
+          <div class="float-card-point">
+          </div>
+          <div class="float-card-title">標題
+          </div>
+          <div class="float-card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, nobis.Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, nobis.</div>
+        </div>
+      </div>
+
+                  <!-- c -->
+      <div class="float-card">
+        <div>
+          <img class="float-card-img" src="https://picsum.photos/300/150/?random=11">
+        </div>
+
+        <div class="box-p">
+          <div class="float-card-point">
+          </div>
+          <div class="float-card-title">標題
+          </div>
+          <div class="float-card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, nobis.Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, nobis.</div>
+        </div>
+      </div>
+
+                  <!-- c -->
+      <div class="float-card">
+        <div>
+          <img class="float-card-img" src="https://picsum.photos/300/150/?random=12">
+        </div>
+
+        <div class="box-p">
+          <div class="float-card-point">
+          </div>
+          <div class="float-card-title">標題
+          </div>
+          <div class="float-card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, nobis.Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, nobis.</div>
+        </div>
+      </div>
+
+                  <!-- c -->
+      <div class="float-card">
+        <div>
+          <img class="float-card-img" src="https://picsum.photos/300/150/?random=13">
+        </div>
+
+        <div class="box-p">
+          <div class="float-card-point">
+          </div>
+          <div class="float-card-title">標題
+          </div>
+          <div class="float-card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, nobis.Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, nobis.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
